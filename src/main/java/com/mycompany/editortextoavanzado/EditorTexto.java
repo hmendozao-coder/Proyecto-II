@@ -26,10 +26,6 @@ public class EditorTexto {
 
     /**
      * Agrega texto al contenido actual.
-     * 
-     * Estrategia:
-     * - Guarda estado previo en Undo
-     * - Limpia Redo para evitar inconsistencias
      */
     public void escribir(String nuevoTexto) {
         pilaUndo.push(texto);   // guardar estado anterior
@@ -96,5 +92,30 @@ public class EditorTexto {
         } else {
             System.out.println("Palabra no encontrada.");
         }
+    }
+
+    /**
+     * Reemplaza una palabra por otra dentro del texto.
+     */
+    public void reemplazar(String palabraBuscada, String nuevaPalabra) {
+
+        if (texto.isEmpty()) {
+            System.out.println("El texto está vacío.");
+            return;
+        }
+
+        if (!texto.contains(palabraBuscada)) {
+            System.out.println("La palabra no existe en el texto.");
+            return;
+        }
+
+        pilaUndo.push(texto); // guardar estado anterior
+
+        texto = texto.replace(palabraBuscada, nuevaPalabra);
+
+        pilaRedo.clear(); // limpiar redo
+        actualizarArbol();
+
+        System.out.println("Reemplazo realizado correctamente.");
     }
 }
