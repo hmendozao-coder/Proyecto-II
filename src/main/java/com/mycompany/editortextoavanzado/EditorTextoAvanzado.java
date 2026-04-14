@@ -44,6 +44,7 @@ public class EditorTextoAvanzado {
             System.out.println("3. Deshacer (Undo)");
             System.out.println("4. Rehacer (Redo)");
             System.out.println("5. Buscar palabra");
+            System.out.println("6. Reemplazar palabra");            
             System.out.println("0. Salir");
             System.out.print("Seleccione una opción: ");
 
@@ -99,6 +100,17 @@ public class EditorTextoAvanzado {
                     String palabra = sc.nextLine();
                     editor.buscar(palabra);
                     break;
+                 case 6:
+                     System.out.print("Palabra a reemplazar: ");
+                     String buscar = sc.nextLine();
+
+                    System.out.print("Nueva palabra: ");
+                    String nueva = sc.nextLine();
+
+                    editor.reemplazar(buscar, nueva);
+                    break;
+
+                    
 
                 case 0:
                     System.out.println("Saliendo del programa...");
